@@ -13,12 +13,25 @@ def read_input():
 
       content = []
       for rawNode in rawContent:
-        node = rawNode.split()
-        nodei = Node(int(node[0]), int(node[1]), int(node[2]))
-        content.append(nodei)
+        if (rawNode != '\n'):
+          node = rawNode.split()
+          nodei = Node(float(node[0]), float(node[1]), float(node[2]))
+          content.append(nodei)
+
     if (len(content) < 1):
       return 'Input vazio'
 
-    return content
+    metaheuristic = input('Metaheuristica Hill Climbing (h) ou Simulated Annealing (s): ')
+    if (metaheuristic == 'h'):
+      viz_limit = input('Limite máximo de vizinhos (0 para máximo): ')
+    else:
+      viz_limit = 0
+
+    user_options = {
+      "metaheuristic": metaheuristic,
+      "viz_limit": viz_limit
+    }
+
+    return content, user_options
   except Exception as e:
     print(e)

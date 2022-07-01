@@ -1,10 +1,10 @@
 from aval import aval
 from random import randrange
 
-def get_vizinhos(solution):
+def get_vizinhos(solution, viz_limit):
   vizinhos = []
 
-  for i in range(len(solution)):
+  for i in range(viz_limit):
     for j in range(i + 1, len(solution)):
       vizinho = solution.copy()
       vizinho[i] = solution[j]
@@ -13,8 +13,7 @@ def get_vizinhos(solution):
   return vizinhos
 
 def get_best_vizinhos(search_space, vizinhos):
-  # random_viz = randrange(0, len(vizinhos))
-  random_viz = 0
+  random_viz = randrange(0, len(vizinhos))
   best_euclidean_distance = aval(vizinhos[random_viz], search_space)
   best_vizinho = vizinhos[random_viz]
   for viz in vizinhos:
